@@ -1,0 +1,44 @@
+# Build artifacts
+bin/
+pkg/
+
+# Testing artifacts
+tmp/
+
+# IDE or editor files
+*.idea/
+.vscode/
+*.suo
+*.csproj
+*.vbproj
+*.sln
+*.dll
+
+#local enviroment settings
+.env
+.env.local
+.env.dev
+.env.test
+.env.prod
+
+# Specific folders
+tmp/
+
+# Specific files
+.air.toml
+server
+
+# OS-specific files
+*.DS_Store
+
+# Logs
+*.log
+*.tmp
+
+# Runtime files
+*.pid
+*.sock
+
+# Vim and Emacs temporary files
+*.swp
+*.swo
