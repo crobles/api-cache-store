@@ -9,9 +9,10 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/logger"
 )
 
-var basePath string = config.Config("BASE_PATH")
+
 
 func SetupRoutes(app *fiber.App) {
+	basePath := config.Config("BASE_PATH")
 	api := app.Group(basePath, logger.New())
 	healthRoutes.SetupHealthRoutes(api)
 	cacheRoutes.SetupCacheRoutes(api)
