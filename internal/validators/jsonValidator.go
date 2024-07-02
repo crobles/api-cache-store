@@ -1,7 +1,7 @@
 package jsonValidator
 
 import (
-	jsonModel "api-cache-store/internal/models"
+	clientModel "api-cache-store/internal/models/jsonClient"
 	"fmt"
 
 	"github.com/go-playground/validator/v10"
@@ -10,7 +10,7 @@ import (
 var validate = validator.New()
 
 // ValidateJson valida la estructura Cliente
-func ValidateJson(cliente jsonModel.Cliente) map[string]string {
+func EvalJson(cliente clientModel.Cliente) map[string]string {
 	err := validate.Struct(cliente)
 	if err != nil {
 		errors := make(map[string]string)

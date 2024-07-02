@@ -4,7 +4,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-
 func SetupHealthRoutes(router fiber.Router) {
 	health := router.Group("/health")
 

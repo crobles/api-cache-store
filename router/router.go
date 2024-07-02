@@ -1,7 +1,7 @@
 package router
 
 import (
-	config "api-cache-store/config"
+	configENV "api-cache-store/config/env"
 	cacheRoutes "api-cache-store/internal/routes/cache"
 	healthRoutes "api-cache-store/internal/routes/health"
 
@@ -9,12 +9,9 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/logger"
 )
 
-
-
 func SetupRoutes(app *fiber.App) {
-	basePath := config.Config("BASE_PATH")
+	basePath := configENV.ConfigEnv("BASE_PATH")
 	api := app.Group(basePath, logger.New())
 	healthRoutes.SetupHealthRoutes(api)
 	cacheRoutes.SetupCacheRoutes(api)
-
 }

@@ -1,7 +1,7 @@
 package connectDatabase
 
 import (
-	config "api-cache-store/config"
+	configENV "api-cache-store/config/env"
 	"context"
 	"fmt"
 	"log"
@@ -14,9 +14,9 @@ var clientDB *redis.Client
 
 func ConnectDB() (*redis.Client, error) {
 	ctx := context.Background()
-	redisAddr := config.Config("REDIS_ADDRESS")
-	redisPass := config.Config("REDIS_PASSWORD")
-	redisDB := config.Config("REDIS_DB")
+	redisAddr := configENV.ConfigEnv("REDIS_ADDRESS")
+	redisPass := configENV.ConfigEnv("REDIS_PASSWORD")
+	redisDB := configENV.ConfigEnv("REDIS_DB")
 
 	db, err := strconv.Atoi(redisDB)
 	if err != nil {

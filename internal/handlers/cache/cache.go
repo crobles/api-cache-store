@@ -2,7 +2,7 @@ package cacheHandler
 
 import (
 	connectDatabase "api-cache-store/database/redis"
-	jsonModel "api-cache-store/internal/models"
+	clientModel "api-cache-store/internal/models/jsonClient"
 	jsonValidator "api-cache-store/internal/validators"
 	"context"
 	"encoding/json"
@@ -15,7 +15,7 @@ import (
 var ctx = context.Background()
 
 func ValidateJson(c *fiber.Ctx) error {
-	var cliente jsonModel.Cliente
+	var cliente clientModel.Cliente
 
 		// Parsear el JSON recibido
 		if err := c.BodyParser(&cliente); err != nil {
@@ -25,7 +25,7 @@ func ValidateJson(c *fiber.Ctx) error {
 		}
 
 		// Validar el JSON
-		if errors := jsonValidator.ValidateJson(cliente); errors != nil {
+		if errors := jsonValidator.EvalJson(cliente); errors != nil {
 			return c.Status(fiber.StatusBadRequest).JSON(errors)
 		}
 

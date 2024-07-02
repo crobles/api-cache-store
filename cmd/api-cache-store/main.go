@@ -1,7 +1,9 @@
 package main
 
 import (
+	configFiber "api-cache-store/config/fiber"
 	database "api-cache-store/database/redis"
+	fiberModel "api-cache-store/internal/models/fiber"
 	router "api-cache-store/router"
 	"fmt"
 	"os"
@@ -10,12 +12,17 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-var mamalo string = "mamalo"
+var config fiberModel.Config = configFiber.SetConfigFiber()
 
 func main() {
 	fmt.Println("Starting server")
 	time.Sleep(1 * time.Second)
-	app := fiber.New()
+	app := fiber.New(fiber.Config{
+		CaseSensitive:	config.CaseSensitive,
+		StrictRouting:  config.StrictRouting,
+		ServerHeader:	config.ServerHeader,
+		AppName:	config.AppName,
+	})
 
 	fmt.Println("Connecting to database")
 	time.Sleep(1 * time.Second)

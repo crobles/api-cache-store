@@ -1,4 +1,4 @@
-package jsonModel
+package clientModel
 
 // Definir las estructuras del JSON
 type Producto struct {
