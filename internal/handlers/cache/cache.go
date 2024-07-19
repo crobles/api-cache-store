@@ -60,3 +60,47 @@ func ValidateJson(c *fiber.Ctx) error {
 		return c.SendString("CacheGet")
 	}
 
+	//funciones para el test de stress
+
+	func CreateCache(c *fiber.Ctx) error {
+		DB := connectDatabase.GetRedisClient()
+		err := DB.Set(ctx, "key3", "value", 60 * time.Second).Err()
+		if err != nil {
+			fmt.Println(" error ---- :", err)
+			//panic(err)
+		}
+		return c.SendString("CacheAdd")
+	}
+
+	func ReadCache(c *fiber.Ctx) error {
+		DB := connectDatabase.GetRedisClient()
+		err := DB.Set(ctx, "key3", "value", 60 * time.Second).Err()
+		if err != nil {
+			fmt.Println(" error ---- :", err)
+			//panic(err)
+		}
+		return c.SendString("CacheAdd")
+	}
+
+	func UpdateCache(c *fiber.Ctx) error {
+		DB := connectDatabase.GetRedisClient()
+		err := DB.Set(ctx, "key3", "value", 60 * time.Second).Err()
+		if err != nil {
+			fmt.Println(" error ---- :", err)
+			//panic(err)
+		}
+		return c.SendString("CacheAdd")
+	}
+
+	func DeleteCache(c *fiber.Ctx) error {
+		DB := connectDatabase.GetRedisClient()
+		err := DB.Set(ctx, "key3", "value", 60 * time.Second).Err()
+		if err != nil {
+			fmt.Println(" error ---- :", err)
+			//panic(err)
+		}
+		return c.SendString("CacheAdd")
+	}
+
+
+

@@ -9,3 +9,40 @@ services:
       - REDIS_PASSWORD=1234
     ports:
       - "6379:6379"
+# ------------------------------------------------
+
+#services:
+#  redis:
+#    container_name: redis-api-cache
+#    image: redis:latest
+#    command: redis-server --requirepass 1234
+#    ports:
+#      - 6379:6379
+#    volumes:
+#      - redis:/data
+#    environment:
+#      - REDIS_USER=user
+#      - REDIS_PASSWORD=1234
+
+#volumes:
+#  redis:
+#    driver: local
+#------------------------------------------------
+
+#services:
+#  redis:
+#    container_name: redis-api-cache
+#    image: redis:latest
+#    command: redis-server --requirepass 1234 --user user on >1234 ~* +@all
+#    ports:
+#      - 6379:6379
+#    volumes:
+#      - redis:/data
+#    environment:
+#      - REDIS_USER=user
+#      - REDIS_PASSWORD=1234
+#      - REDIS_DB=0
+
+#volumes:
+#  redis:
+#    driver: local
