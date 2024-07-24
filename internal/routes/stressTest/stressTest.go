@@ -9,9 +9,11 @@ import (
 
 func SetupCacheRoutes_stressTest(router fiber.Router) {
 	cache := router.Group("/stressTestCache")
-
+	// pruebda de cache con crud
 	cache.Post("/create", cacheHandler.CreateCache)
 	cache.Get("/read", cacheHandler.ReadCache)
 	cache.Put("/update", cacheHandler.UpdateCache)
 	cache.Delete("/delete", cacheHandler.DeleteCache)
+	// prueba de cache con logica
+	cache.Post("/cache", cacheHandler.Cache)
 }
