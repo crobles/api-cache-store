@@ -11,7 +11,7 @@ RUN go mod download
 # Copia el código fuente de la aplicación
 COPY . .
 
-# Compila la aplicación
+# Copila la aplicación
 RUN CGO_ENABLED=0 GOOS=linux go build -o myapp .
 
 # Etapa 2: Imagen final
@@ -26,8 +26,14 @@ WORKDIR /root/
 # Copia el binario desde la etapa de construcción
 COPY --from=builder /app/myapp .
 
+# Copia el archivo .env
+COPY .env .env
+
+# Instala `bash` para permitir la ejecución de scripts y carga de variables de entorno
+RUN apk --no-cache add bash
+
 # Expone el puerto que utiliza la aplicación (cambiar según sea necesario)
 EXPOSE 8080
 
 # Comando para ejecutar la aplicación
-CMD ["./myapp"]
+CMD ["sh", "-c", "source .env && ./myapp"]
