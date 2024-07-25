@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+  stress_test_go:
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+    links:
+      - redis
+    depends_on:
+      - redis
+    environment:
+      - REDIS_ADDRESS=redis:6379
+      - REDIS_PASSWORD=1234
+      - REDIS_DB=0
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: 256M
+  redis:
+    image: redis:latest
+    container_name: redis-api-cache
+    command: redis-server --requirepass 1234
+    environment:
+      - REDIS_PASSWORD=1234
+    ports:
+      - "6379:6379"

@@ -1,39 +1,39 @@
-# Etapa 1: Construcción
-FROM golang:1.20 AS builder
+# Build Stage
+FROM golang:alpine AS builder
 
-# Establece el directorio de trabajo
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copia go.mod y go.sum e instala las dependencias
+# Install necessary packages
+RUN apk update && apk add --no-cache git
+
+# Copy go.mod and go.sum files and download dependencies
 COPY go.mod go.sum ./
 RUN go mod download
 
-# Copia el código fuente de la aplicación
+# Copy the source code into the container
 COPY . .
 
-# Copila la aplicación
-RUN CGO_ENABLED=0 GOOS=linux go build -o myapp .
+# Build the application
+RUN go build -o /bin/api-cache-store ./cmd/api-cache-store
 
-# Etapa 2: Imagen final
+# Final Stage
 FROM alpine:latest
 
-# Instala ca-certificates para permitir conexiones HTTPS
+# Set the working directory inside the container
+WORKDIR /app
+
+# Install ca-certificates to handle HTTPS
 RUN apk --no-cache add ca-certificates
 
-# Establece el directorio de trabajo
-WORKDIR /root/
+# Copy the binary from the build stage
+COPY --from=builder /bin/api-cache-store /app/api-cache-store
 
-# Copia el binario desde la etapa de construcción
-COPY --from=builder /app/myapp .
+# Copy the .env file
+COPY .env /app/.env
 
-# Copia el archivo .env
-COPY .env .env
-
-# Instala `bash` para permitir la ejecución de scripts y carga de variables de entorno
-RUN apk --no-cache add bash
-
-# Expone el puerto que utiliza la aplicación (cambiar según sea necesario)
+# Expose the port the app runs on
 EXPOSE 8080
 
-# Comando para ejecutar la aplicación
-CMD ["sh", "-c", "source .env && ./myapp"]
+# Command to run the application
+CMD ["/app/api-cache-store"]
