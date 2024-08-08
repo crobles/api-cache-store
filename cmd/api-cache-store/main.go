@@ -16,8 +16,9 @@ var config fiberModel.Config = configFiber.SetConfigFiber()
 
 func main() {
 	fmt.Println("Starting server")
-	time.Sleep(1 * time.Second)
+	time.Sleep(500 * time.Millisecond)
 	app := fiber.New(fiber.Config{
+		Prefork:	config.Prefork,
 		CaseSensitive:	config.CaseSensitive,
 		StrictRouting:  config.StrictRouting,
 		ServerHeader:	config.ServerHeader,
@@ -25,7 +26,7 @@ func main() {
 	})
 
 	fmt.Println("Connecting to database")
-	time.Sleep(1 * time.Second)
+	time.Sleep(500 * time.Millisecond)
 	_, err := database.ConnectDB()
 	if err != nil {
 		fmt.Println("Failed to connect to database with error: ", err)
@@ -34,7 +35,7 @@ func main() {
 	}
 
 	fmt.Println("Configuring routes")
-	time.Sleep(1 * time.Second)
+	time.Sleep(500 * time.Millisecond)
 	router.SetupRoutes(app)
 
 	fmt.Println("Starting server on port 8080")

@@ -1,0 +1,40 @@
+{
+  "nombre": "cristofer",
+  "apellido": "robles",
+  "rut": "1",
+  "telefono": "987767876",
+  "correo": "croblesr@ripley.com",
+  "direccion": "mi casita",
+  "fecha_nacimiento": "1987-06-23",
+  "fecha_creacion": "2024-28-07",
+  "instagram": "@crobles01",
+  "carrito": {
+    "id_carrito": 1,
+    "productos": [
+      {
+        "id_producto": "3456ytgre3456y",
+        "nombre_producto": "zapatilla",
+        "precio": "29990",
+        "SKU": "6789oikjhbgt678i"
+      },
+      {
+        "id_producto": "7f8ikj5n6tygifo",
+        "nombre_producto": "iphone",
+        "precio": "1999990",
+        "SKU": "5i98rf7gybhgnjk76"
+      }
+    ],
+    "promociones": [
+      {
+        "id_promocion": "0h9u8t9g",
+        "off": 0.5,
+        "sku": "6789oikjhbgt678i"
+      },
+      {
+        "id_promocion": "8ti56jk7uh",
+        "off": 0.25,
+        "sku": "5i98rf7gybhgnjk76"
+      }
+    ]
+  }
+}
